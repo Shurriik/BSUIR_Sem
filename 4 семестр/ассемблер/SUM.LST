@@ -1,0 +1,103 @@
+Microsoft (R) Macro Assembler Version 5.00                  2/25/26 16:53:28
+                                                             Page     1-1
+
+
+       1				; Программа sum.asm - вычи
+					сление суммы двух чис
+					ел 
+       2				; Задача: сложить два �
+					�исла (3 и 5) и сохранит�
+					� результат в перемен�
+					�ой result 
+       3				 
+       4 0000				DATA SEGMENT 
+       5 0000  0003			    A      DW 3        ; Определ
+					яем переменную A разм�
+					�ром слово со значени�
+					�м 3 
+       6 0002  0005			    B      DW 5        ; Определ
+					яем переменную B разм�
+					�ром слово со значени�
+					�м 5 
+       7 0004  ????			    RESULT DW ?        ; Резерви
+					руем слово для резуль
+					тата (символ '?' означа
+					ет неини
+       8 0006				DATA ENDS 
+       9				 
+      10 0000				CODE SEGMENT 
+      11				    ASSUME CS:CODE, DS:DATA 
+      12 0000				START: 
+      13				    ; 1. Инициализация с�
+					�гментного регистра DS
+					 
+      14 0000  B8 ---- R		    MOV AX, DATA       ; Нельзя �
+					�ереслать значение в D
+					S напрямую, только чер
+					ез AX 
+      15 0003  8E D8			    MOV DS, AX         ; Теперь D
+					S указывает на наш сег
+					мент данных 
+      16				 
+      17				    ; 2. Основная логика 
+					программы 
+      18 0005  A1 0000 R		    MOV AX, A          ; Загружа
+					ем значение A (3) в реги
+					стр AX 
+      19 0008  03 06 0002 R		    ADD AX, B          ; Прибавл
+					яем к AX значение B (5). Т
+					еперь AX = 8 
+      20 000C  A3 0004 R		    MOV RESULT, AX     ; Сохраня
+					ем результат из AX в пе
+					ременную RESULT 
+      21				 
+      22				    ; 3. Завершение прог�
+					�аммы (корректный вых�
+					�д в DOS) 
+      23 000F  B4 4C			    MOV AH, 4Ch        ; Функция
+					 DOS 4Ch - завершить прог�
+Microsoft (R) Macro Assembler Version 5.00                  2/25/26 16:53:28
+                                                             Page     1-2
+
+
+					�амму с кодом возврат�
+					� 
+      24 0011  CD 21			    INT 21h            ; Вызов п�
+					�ерывания DOS 
+      25 0013				CODE ENDS 
+      26				END START              ; Точка в�
+					�ода в программу 
+Microsoft (R) Macro Assembler Version 5.00                  2/25/26 16:53:28
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	0013	PARA	NONE	
+DATA . . . . . . . . . . . . . .  	0006	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+A  . . . . . . . . . . . . . . .  	L WORD	0000	DATA
+
+B  . . . . . . . . . . . . . . .  	L WORD	0002	DATA
+
+RESULT . . . . . . . . . . . . .  	L WORD	0004	DATA
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  sum		
+
+
+     26 Source  Lines
+     26 Total   Lines
+      8 Symbols
+
+  50680 + 465848 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
